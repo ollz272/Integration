@@ -1,0 +1,7 @@
+#include "pch.h"
+#include <iostream>
+
+double simpsonsmethod(double Trapeziumvalue, double Midpointvalue)
+{
+	return (Trapeziumvalue + 2.0*Midpointvalue) / 3.0;
+}
