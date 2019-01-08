@@ -1,0 +1,25 @@
+#include <iostream>
+
+double midpointmethod(double lowerboundry, double upperboundry, double parition)
+{
+	double delta;
+	delta = (upperboundry - lowerboundry) / parition;
+	double xone;
+	double xtwo;
+	xone = lowerboundry;
+	xtwo = lowerboundry + delta;
+	int counter;
+	counter = 1;
+	double partialsum;
+	double totalsum;
+	totalsum = 0;
+	while (counter <= parition) 
+	{
+		partialsum = delta * pow((xone + xtwo) / 2.0, 2);
+		totalsum = totalsum + partialsum;
+		xone = xtwo;
+		xtwo = xtwo + delta;
+		counter++;
+	}
+	return totalsum;
+}
