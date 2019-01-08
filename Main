@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cmath>
+ 
+double TrapaziodalRule(double Lowerbound,double Upperbound,double numberpartitions)
+{	
+	int counter;
+	counter = 1; //Sets the counter used in the while loop to zero
+	double delta;
+	delta = (Upperbound - Lowerbound)/numberpartitions; // Defines the width of each trapezoid
+	double xone;
+	double xtwo;
+	xone = Lowerbound; //We set a new variable, xone, to be the starting position of the first trapezoid. 
+	xtwo = Lowerbound + delta;  //we set a new variable, xtwo, to be the end position of the first trapezoid.
+	double sumtotal;   // this variable will be used to keep the value of the area calculated so far.
+	sumtotal = 0;
+	double partialsum; // this variable will be used to store the area of the trapezoid in question
+	while (counter <= numberpartitions)
+	{
+		partialsum = delta*(pow(xone,2) + pow(xtwo,2))/2; // This is the formula used to calculate the area of this given trapezoid for the given function. One can replace this with any function they wish.
+		//std::cout << partialsum ;
+		sumtotal = sumtotal + partialsum; // we add the partial sum to the current total sum.
+		//std::cout << sumtotal ;
+		counter++; // we increase the counter by one, so the program can keep track of when to stop.
+		xone = xtwo; //the below two set the stage for the next loop, as we need to calculate the area of the NEXT trapezoid.
+		xtwo = xtwo + delta;
+    }
+		    return sumtotal;
+}
+ 
+ 
+int main()
+{
+   int Lowerbound;
+   int Upperbound;
+   int numberpartitions;
+   std::cout <<"Please input the lower bound of the area you wish to calculate: " ;
+   std::cin >> Lowerbound; //The user types in their desired lower bound.
+   std::cout <<"Please input the upper bound of the area you wish to calculate: " ;
+   std::cin >> Upperbound; //The User types in their desired upper bound
+   if (Lowerbound  < Upperbound)
+   {
+        std::cout <<"The program will now output the trapezium rule values for different accuracies."<< std::endl ;
+        std::cin >> numberpartitions; //The User decided the number of times to split up the given partition.
+        //int counter;
+        //counter = 1;
+        //while (counter <= 512) 
+        //{
+                std::cout <<counter <<" Trapezoid: "<< TrapaziodalRule(Lowerbound,Upperbound,counter) << std::endl;
+                counter = 2*counter;
+        //}
+        //std:: cout << "acual area: " << (pow(Upperbound,3) - pow(Lowerbound,3))/3 ;
+        return 0;
+   }
+   else
+   {
+       std::cout << "ERROR! Please make sure your upper bound is larger than your lower bound";
+       return 1;
+   }
+}
